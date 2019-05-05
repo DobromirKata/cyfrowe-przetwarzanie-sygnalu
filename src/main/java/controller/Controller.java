@@ -1,16 +1,19 @@
 package controller;
 
+import cps.OperacjeNaPlikach;
 import cps.PlotChart;
 import cps.Sygnal;
 import model.Model;
 import view.View;
 
 import javax.swing.*;
+import java.io.File;
 
 public class Controller {
 
     private View view;
     private  Model model;
+    private JFileChooser wyborPliku;
 
     public Controller(View view, Model model) {
         this.view = view;
@@ -33,12 +36,19 @@ public class Controller {
         view.getPolePrawdopodobienstwo().addChangeListener(e -> model.setPrawdopodobienstwo((int) view.getPolePrawdopodobienstwo().getValue()));
         view.getHistogramSlider().addChangeListener(e -> model.setHistogram(view.getHistogramSlider().getValue()));
 
-        view.getList1().addListSelectionListener(e -> view.getWyświetlButton().setEnabled(true));
+        view.getList1().addListSelectionListener(e -> aktualizujPrzyciski());
 
 //        Przyciski
         view.getGenerujButton().addActionListener(e -> generujSygnal());
         view.getWyświetlButton().addActionListener(e -> wyswietlSygnal());
+        view.getZapiszButton().addActionListener(e -> zapisz());
+        view.getWczytajButton().addActionListener(e -> wczytaj());
 
+    }
+
+    private void aktualizujPrzyciski() {
+        view.getWyświetlButton().setEnabled(true);
+        view.getZapiszButton().setEnabled(true);
     }
 
     private void generujSygnal() {
@@ -65,6 +75,26 @@ public class Controller {
         view.getWyborSygnalu().setModel(new DefaultComboBoxModel(model.SYGNALY));
     }
 
+    private void wczytaj() {
+        wyborPliku = new JFileChooser();
+        int ok = wyborPliku.showOpenDialog(view.getMainPanel());
+        if (ok == JFileChooser.APPROVE_OPTION) {
+            String wybranaSciezka = wyborPliku.getSelectedFile().getPath();
+            Sygnal sygnal = OperacjeNaPlikach.importFromFile(new File(wybranaSciezka));
+            model.addSygnal(sygnal);
+            view.addToList(sygnal.StringToJlist());
+        }
+    }
 
+    private void zapisz() {
+        wyborPliku = new JFileChooser();
+        int ok = wyborPliku.showSaveDialog(view.getMainPanel());
+        if (ok == JFileChooser.APPROVE_OPTION) {
+            int index = view.getList1().getSelectedIndex();
+            Sygnal sygnal = model.getSygnaly().get(index);
+            String wybranaSciezka = wyborPliku.getSelectedFile().getPath();
+            OperacjeNaPlikach.saveToFile(sygnal, new File(wybranaSciezka));
+        }
+    }
 
 }

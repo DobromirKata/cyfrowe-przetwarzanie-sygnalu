@@ -269,6 +269,8 @@ public class View {
         listModel.addElement(text);
     }
 
-
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
 }
 
