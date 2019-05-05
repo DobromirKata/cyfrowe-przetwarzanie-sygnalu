@@ -38,6 +38,8 @@ public class View {
         frame.setSize(900, 700);
         frame.setVisible(true);
 
+        ustawTypy();
+
         histogramSlider.addChangeListener(e -> histoNum.setText(Integer.toString(histogramSlider.getValue())));
     }
     
@@ -55,6 +57,11 @@ public class View {
             poleCzestotliwosc.setEnabled(true);
             polePrawdopodobienstwo.setEnabled(false);
             histogramSlider.setEnabled(true);
+            //            Domyślne wartości
+            poleAmplituda.setValue(1.0);
+            poleCzasPocz.setValue(0.0);
+            poleCzasSyg.setValue(200.0);
+            poleCzestotliwosc.setValue(1);
         } else if (wybranySygnal >= 3 && wybranySygnal <= 5) {
             poleAmplituda.setEnabled(true);
             poleCzasPocz.setEnabled(true);
@@ -67,6 +74,12 @@ public class View {
             poleCzestotliwosc.setEnabled(true);
             polePrawdopodobienstwo.setEnabled(false);
             histogramSlider.setEnabled(true);
+            //            Domyślne wartości
+            poleAmplituda.setValue(1.0);
+            poleCzasPocz.setValue(0.0);
+            poleCzasSyg.setValue(200.0);
+            poleOkres.setValue(200.0);
+            poleCzestotliwosc.setValue(1);
         } else if (wybranySygnal >= 6 && wybranySygnal <= 8) {
             poleAmplituda.setEnabled(true);
             poleCzasPocz.setEnabled(true);
@@ -79,6 +92,13 @@ public class View {
             poleCzestotliwosc.setEnabled(true);
             polePrawdopodobienstwo.setEnabled(false);
             histogramSlider.setEnabled(true);
+            //            Domyślne wartości
+            poleAmplituda.setValue(1.0);
+            poleCzasPocz.setValue(0.0);
+            poleCzasSyg.setValue(200.0);
+            poleOkres.setValue(200.0);
+            poleWspWyp.setValue(0.5);
+            poleCzestotliwosc.setValue(1);
         } else if (wybranySygnal == 9) {
             poleAmplituda.setEnabled(true);
             poleCzasPocz.setEnabled(true);
@@ -91,32 +111,63 @@ public class View {
             poleCzestotliwosc.setEnabled(true);
             polePrawdopodobienstwo.setEnabled(false);
             histogramSlider.setEnabled(true);
+            //            Domyślne wartości
+            poleAmplituda.setValue(1.0);
+            poleCzasPocz.setValue(0.0);
+            poleCzasSyg.setValue(200.0);
+            poleCzasSkoku.setValue(100.0);
+            poleCzestotliwosc.setValue(1);
         } else if (wybranySygnal == 10) {
-            poleAmplituda.setEnabled(true);
-            poleCzasPocz.setEnabled(true);
+            poleAmplituda.setEnabled(false);
+            poleCzasPocz.setEnabled(false);
             poleCzasSyg.setEnabled(false);
             poleOkres.setEnabled(false);
             poleWspWyp.setEnabled(false);
             poleCzasSkoku.setEnabled(false);
             poleProbkaSkoku.setEnabled(true);
             poleIloscPr.setEnabled(true);
-            poleCzestotliwosc.setEnabled(true);
+            poleCzestotliwosc.setEnabled(false);
             polePrawdopodobienstwo.setEnabled(false);
             histogramSlider.setEnabled(true);
+            //            Domyślne wartości
+            poleProbkaSkoku.setValue(100);
+            poleIloscPr.setValue(200);
         } else if (wybranySygnal == 11) {
-            poleAmplituda.setEnabled(true);
-            poleCzasPocz.setEnabled(true);
-            poleCzasSyg.setEnabled(true);
+            poleAmplituda.setEnabled(false);
+            poleCzasPocz.setEnabled(false);
+            poleCzasSyg.setEnabled(false);
             poleOkres.setEnabled(false);
             poleWspWyp.setEnabled(false);
             poleCzasSkoku.setEnabled(false);
-            poleProbkaSkoku.setEnabled(false);
-            poleIloscPr.setEnabled(false);
-            poleCzestotliwosc.setEnabled(true);
+            poleProbkaSkoku.setEnabled(true);
+            poleIloscPr.setEnabled(true);
+            poleCzestotliwosc.setEnabled(false);
             polePrawdopodobienstwo.setEnabled(true);
             histogramSlider.setEnabled(true);
+            //            Domyślne wartości
+            poleProbkaSkoku.setValue(100);
+            poleIloscPr.setValue(200);
+            polePrawdopodobienstwo.setValue(0.05);
         }
     }
+
+    private void ustawTypy() {
+
+        poleAmplituda.setModel(new SpinnerNumberModel(1.0, 0.1, 999999.0, 0.1));
+        poleCzasPocz.setModel(new SpinnerNumberModel(0.0, 0.0, 999999.0, 0.1));
+        poleCzasSyg.setModel(new SpinnerNumberModel(0.1, 0.1, 999999.0, 0.1));
+        poleWspWyp.setModel(new SpinnerNumberModel(0.0, 0, 1, 0.1));
+        poleOkres.setModel(new SpinnerNumberModel(0.0, -999999.0, 999999.0, 0.1));
+        poleCzasSkoku.setModel(new SpinnerNumberModel(0.0, -999999.0, 999999.0, 0.1));
+        poleProbkaSkoku.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+        poleIloscPr.setModel(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+        poleCzestotliwosc.setModel(new SpinnerNumberModel(1, 1, 999999, 1));
+        polePrawdopodobienstwo.setModel(new SpinnerNumberModel(200, 2, Integer.MAX_VALUE, 1));
+
+
+    }
+
+
 
     public JComboBox getWyborSygnalu() {
         return wyborSygnalu;

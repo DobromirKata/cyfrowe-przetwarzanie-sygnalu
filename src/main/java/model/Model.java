@@ -25,7 +25,6 @@ public class Model {
 
     public Sygnal generujSygnal() {
         switch (wybranySygnal) {
-
             case 1:
                 return new SzumRozkladGaussa(amplituda, czasPocz, czasSyg, czestotliwosc);
             case 2:
