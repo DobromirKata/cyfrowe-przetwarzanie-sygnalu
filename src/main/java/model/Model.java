@@ -28,6 +28,10 @@ public class Model {
 
     private List<Sygnal> sygnaly = new ArrayList<>();
 
+    public Model() {
+        aktualizujParametry(0);
+    }
+
     public Sygnal generujSygnal() {
         switch (wybranySygnal) {
             case 1:
@@ -66,6 +70,43 @@ public class Model {
             // plotChart.plotChartAndHistogram(s11);
             // signalList.add(s11);
         }
+    }
+    
+    public void aktualizujParametry(int wybranySygnal) {
+        wybranySygnal = wybranySygnal + 1;
+        if (wybranySygnal >= 1 && wybranySygnal <= 2) {
+            amplituda = 1.0;
+            czasPocz = 0.0;
+            czasSyg = 200.0;
+            czestotliwosc = 1;
+        } else if (wybranySygnal >= 3 && wybranySygnal <= 5) {
+            amplituda = 1.0;
+            czasPocz = 0.0;
+            czasSyg = 200.0;
+            okres = 200.0;
+            czestotliwosc = 1;
+        } else if (wybranySygnal >= 6 && wybranySygnal <= 8) {
+            amplituda = 1.0;
+            czasPocz = 0.0;
+            czasSyg = 200.0;
+            okres = 200.0;
+            wspWyp = 0.5;
+            czestotliwosc = 1;
+        } else if (wybranySygnal == 9) {
+            amplituda = 1.0;
+            czasPocz = 0.0;
+            czasSyg = 200.0;
+            czasSkoku = 100.0;
+            czestotliwosc = 1;
+        } else if (wybranySygnal == 10) {
+            probkaSkoku = 100;
+            iloscProbek = 200;
+        } else if (wybranySygnal == 11) {
+            probkaSkoku = 100;
+            iloscProbek = 200;
+            prawdopodobienstwo = 0.05;
+        }
+        histogram = 15;
     }
 
 
