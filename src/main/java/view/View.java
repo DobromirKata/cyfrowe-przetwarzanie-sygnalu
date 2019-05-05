@@ -37,6 +37,8 @@ public class View {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(900, 700);
         frame.setVisible(true);
+
+        histogramSlider.addChangeListener(e -> histoNum.setText(Integer.toString(histogramSlider.getValue())));
     }
     
     public void aktualizujPrzyciski(int wybranySygnal) {

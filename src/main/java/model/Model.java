@@ -1,5 +1,7 @@
 package model;
 
+import cps.*;
+
 public class Model {
 
     public static final String[] SYGNALY = { "Rozklad jednostajny",
@@ -20,6 +22,48 @@ public class Model {
     private int czestotliwosc = 0;// czestotliwosc, domyslne 1 Hz
     private double prawdopodobienstwo = 0;   // prawdopodobienstwo wystapienia skoku
     private int histogram = 0;    // przesuniecie wartosci czasu pobrania probki
+
+    public Sygnal generujSygnal() {
+        switch (wybranySygnal) {
+
+            case 1:
+                return new SzumRozkladGaussa(amplituda, czasPocz, czasSyg, czestotliwosc);
+            case 2:
+                return new SygnalSinus(amplituda, czasPocz, czasSyg, okres, czestotliwosc);
+            case 3:
+                return new SygnalSinusJednopolowkowy(amplituda, czasPocz, czasSyg, okres, czestotliwosc);
+            case 4:
+                return new SygnalSinusDwupolowkowy(amplituda, czasPocz, czasSyg, okres, czestotliwosc);
+            case 5:
+                return new SygnalProstokatny(amplituda, czasPocz, czasSyg, okres, wspWyp, czestotliwosc);
+            case 6:
+                return new SygnalProstokatnySymetryczny(amplituda, czasPocz, czasSyg, okres, wspWyp, czestotliwosc);
+            case 7:
+                return new SygnalTrojkatny(amplituda, czasPocz, czasSyg, okres, wspWyp, czestotliwosc);
+            case 8:
+                return new SkokJednostkowy(amplituda, czasPocz, czasSyg, czasSyg, czestotliwosc);
+            case 9:
+                return new ImpulsJednostkowy(amplituda, czasPocz, probkaSkoku, iloscProbek, czestotliwosc);
+            case 10:
+                return new SzumImpulsowy(amplituda, czasPocz, czasSyg, czestotliwosc, prawdopodobienstwo);
+                /*
+            case 11:
+                return new SygnalDyskretny(amplituda, czasPocz, probkaSkoku, iloscProbek, czestotliwosc);
+            case 12:
+                return new SygnalDyskretny(amplituda, czasPocz, czasSyg, czestotliwosc, prawdopodobienstwo);
+                */
+            default:
+                return new SzumRozkladJednostajny(amplituda, czasPocz, czasSyg, czestotliwosc);
+
+            // SygnalDyskretny s10 = new SygnalDyskretny(Amplituda, tBegin, ns, samples, freq);
+            // plotChart.plotChartAndHistogram(s10);
+            // signalList.add(s10);
+            // SygnalDyskretny s11 = new SygnalDyskretny(Amplituda, tBegin, signalTime, freq, probability);
+            // plotChart.plotChartAndHistogram(s11);
+            // signalList.add(s11);
+        }
+    }
+
 
     public int getWybranySygnal() {
         return wybranySygnal;
