@@ -7,27 +7,38 @@ import javax.swing.*;
 
 public class Controller {
 
-    private View widok;
+    private View view;
     private  Model model;
 
-    public Controller(View widok, Model model) {
-        this.widok = widok;
+    public Controller(View view, Model model) {
+        this.view = view;
         this.model = model;
         utworzListeSygnalow();
         przypiszPrzyciski();
     }
 
     private void przypiszPrzyciski(){
-        widok.getWyborSygnalu().addActionListener(e->wyborSygnalu());
+        view.getWyborSygnalu().addActionListener(e->wyborSygnalu());
+        view.getPoleAmplituda().addChangeListener(e -> model.setAmplituda((double) view.getPoleAmplituda().getValue()));
+        view.getPoleCzasPocz().addChangeListener(e -> model.setCzaspocz((double) view.getPoleCzasPocz().getValue()));
+        view.getPoleCzasSyg().addChangeListener(e -> model.setCzassyg((double) view.getPoleCzasSyg().getValue()));
+        view.getPoleOkres().addChangeListener(e -> model.setOkres((double) view.getPoleOkres().getValue()));
+        view.getPoleWspWyp().addChangeListener(e -> model.setWspWyp((double) view.getPoleWspWyp().getValue()));
+        view.getPoleCzasSkoku().addChangeListener(e -> model.setCzasSkoku((double) view.getPoleCzasSkoku().getValue()));
+        view.getPoleProbkaSkoku().addChangeListener(e -> model.setProbkaSkoku((int) view.getPoleProbkaSkoku().getValue()));
+        view.getPoleIloscPr().addChangeListener(e -> model.setIloscProbek((int) view.getPoleIloscPr().getValue()));
+        view.getPoleCzestotliwosc().addChangeListener(e -> model.setCzestotliwosc((int) view.getPoleCzestotliwosc().getValue()));
+        view.getPolePrawdopodobienstwo().addChangeListener(e -> model.setPrawdopodobienstwo((int) view.getPolePrawdopodobienstwo().getValue()));
+        view.getHistogramSlider().addChangeListener(e -> model.setHistogram(view.getHistogramSlider().getValue()));
     }
 
     private void wyborSygnalu(){
-        model.setWybranySygnal(widok.getWyborSygnalu().getSelectedIndex());
-        widok.aktualizujPrzyciski(model.getWybranySygnal());
+        model.setWybranySygnal(view.getWyborSygnalu().getSelectedIndex());
+        view.aktualizujPrzyciski(model.getWybranySygnal());
     }
 
     private void utworzListeSygnalow(){
-        widok.getWyborSygnalu().setModel(new DefaultComboBoxModel(model.SYGNALY));
+        view.getWyborSygnalu().setModel(new DefaultComboBoxModel(model.SYGNALY));
     }
 
 

@@ -23,6 +23,11 @@ public class View {
     private JList list1;
     private JLabel histoNum;
     private JSpinner polePrawdopodobienstwo;
+    private JPanel iloscProbekHistog;
+    private JButton dodajButton;
+    private JButton odejmijButton;
+    private JButton mnozenieButton;
+    private JButton dzielenieButton;
 
     public View() {
         // TODO: Tytuł okna programu
@@ -177,5 +182,29 @@ public class View {
 
     public JLabel getHistoNum() {
         return histoNum;
+    }
+
+    public JSpinner getPolePrawdopodobienstwo() {
+        return polePrawdopodobienstwo;
+    }
+
+    public JPanel getIloscProbekHistog() {
+        return iloscProbekHistog;
+    }
+
+    public JButton getDodajButton() {
+        return dodajButton;
+    }
+
+    public JButton getOdejmijButton() {
+        return odejmijButton;
+    }
+
+    public JButton getMnozenieButton() {
+        return mnozenieButton;
+    }
+
+    public JButton getDzielenieButton() {
+        return dzielenieButton;
     }
 }
