@@ -3,6 +3,7 @@ package controller;
 import cps.OperacjeNaPlikach;
 import cps.PlotChart;
 import cps.Sygnal;
+import cps.SygnalOperacje;
 import model.Model;
 import view.View;
 
@@ -44,11 +45,29 @@ public class Controller {
         view.getZapiszButton().addActionListener(e -> zapisz());
         view.getWczytajButton().addActionListener(e -> wczytaj());
 
+        view.getDodajButton().addActionListener(e -> wykonajOperacje(0));
+        view.getOdejmijButton().addActionListener(e -> wykonajOperacje(1));
+        view.getMnozenieButton().addActionListener(e -> wykonajOperacje(2));
+        view.getDzielenieButton().addActionListener(e -> wykonajOperacje(3));
+
     }
 
     private void aktualizujPrzyciski() {
         view.getWyświetlButton().setEnabled(true);
         view.getZapiszButton().setEnabled(true);
+
+        int[] indicies = view.getList1().getSelectedIndices();
+        if (indicies.length >= 2) {
+            view.getDodajButton().setEnabled(true);
+            view.getOdejmijButton().setEnabled(true);
+            view.getMnozenieButton().setEnabled(true);
+            view.getDzielenieButton().setEnabled(true);
+        } else {
+            view.getDodajButton().setEnabled(false);
+            view.getOdejmijButton().setEnabled(false);
+            view.getMnozenieButton().setEnabled(false);
+            view.getDzielenieButton().setEnabled(false);
+        }
     }
 
     private void generujSygnal() {
@@ -95,6 +114,32 @@ public class Controller {
             String wybranaSciezka = wyborPliku.getSelectedFile().getPath();
             OperacjeNaPlikach.saveToFile(sygnal, new File(wybranaSciezka));
         }
+    }
+
+    private void wykonajOperacje(int typ) {
+        Sygnal wynik;
+
+        int[] indices = view.getList1().getSelectedIndices();
+        Sygnal sygnal1 = model.getSygnaly().get(indices[0]);
+        Sygnal sygnal2 = model.getSygnaly().get(indices[1]);
+
+        switch (typ) {
+            case 1:
+                wynik = SygnalOperacje.substractSignals(sygnal1, sygnal2, indices);
+                break;
+            case 2:
+                wynik = SygnalOperacje.multiplySignals(sygnal1, sygnal2, indices);
+                break;
+            case 3:
+                wynik = SygnalOperacje.divisionSignals(sygnal1, sygnal2, indices);
+                break;
+            default:
+                wynik = SygnalOperacje.addingSignals(sygnal1, sygnal2, indices);
+                break;
+        }
+
+        model.addSygnal(wynik);
+        view.addToList(wynik.StringToJlist());
     }
 
 }
