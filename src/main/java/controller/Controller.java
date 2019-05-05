@@ -33,8 +33,12 @@ public class Controller {
         view.getPolePrawdopodobienstwo().addChangeListener(e -> model.setPrawdopodobienstwo((int) view.getPolePrawdopodobienstwo().getValue()));
         view.getHistogramSlider().addChangeListener(e -> model.setHistogram(view.getHistogramSlider().getValue()));
 
+        view.getList1().addListSelectionListener(e -> view.getWyświetlButton().setEnabled(true));
+
 //        Przyciski
         view.getGenerujButton().addActionListener(e -> generujSygnal());
+        view.getWyświetlButton().addActionListener(e -> wyswietlSygnal());
+
     }
 
     private void generujSygnal() {
@@ -43,6 +47,12 @@ public class Controller {
         view.addToList(sygnal.StringToJlist());
         PlotChart.plotChartAndHistogram(sygnal, model.getHistogram());
 //        wyswietlWyniki(sygnal);
+    }
+
+    private void wyswietlSygnal() {
+        int index = view.getList1().getSelectedIndex();
+        Sygnal sygnal = model.getSygnaly().get(index);
+        PlotChart.plotChartAndHistogram(sygnal, model.getHistogram());
     }
 
     private void wyborSygnalu(){

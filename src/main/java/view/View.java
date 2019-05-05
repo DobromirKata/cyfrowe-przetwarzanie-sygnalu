@@ -268,4 +268,7 @@ public class View {
     public void addToList(String text) {
         listModel.addElement(text);
     }
+
+
 }
+
