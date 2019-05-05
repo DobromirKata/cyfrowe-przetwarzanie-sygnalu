@@ -11,17 +11,17 @@ public class Model {
     };
 
     private int wybranySygnal = 0;
-    private double amplituda = 0;     // amplituda
+    private double amplituda = 0;       // amplituda
     private double czasPocz = 0;        // czas poczatkowy
-    private double czasSyg = 0;    // czas trwania sygnalu
-    private double okres = 0;      // okres
-    private double wspWyp = 0;            // wspolczynnik wypelnienia
-    private double czasSkoku = 0;            // czas skoku
-    private int probkaSkoku = 0;       // probka skoku
-    private int iloscProbek = 0;  // liczba probek
-    private int czestotliwosc = 0;// czestotliwosc, domyslne 1 Hz
+    private double czasSyg = 0;         // czas trwania sygnalu
+    private double okres = 0;           // okres
+    private double wspWyp = 0;          // wspolczynnik wypelnienia
+    private double czasSkoku = 0;       // czas skoku
+    private int probkaSkoku = 0;        // probka skoku
+    private int iloscProbek = 0;        // liczba probek
+    private int czestotliwosc = 0;      // czestotliwosc, domyslne 1 Hz
     private double prawdopodobienstwo = 0;   // prawdopodobienstwo wystapienia skoku
-    private int histogram = 0;    // przesuniecie wartosci czasu pobrania probki
+    private int histogram = 0;          // przesuniecie wartosci czasu pobrania probki
 
     public Sygnal generujSygnal() {
         switch (wybranySygnal) {
