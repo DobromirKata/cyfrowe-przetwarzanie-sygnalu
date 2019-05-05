@@ -29,6 +29,8 @@ public class View {
     private JButton mnozenieButton;
     private JButton dzielenieButton;
 
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
+
     public View() {
         // TODO: Tytuł okna programu
         frame = new JFrame("....");
@@ -39,8 +41,10 @@ public class View {
         frame.setVisible(true);
 
         ustawTypy();
+        aktualizujPrzyciski(0);
 
         histogramSlider.addChangeListener(e -> histoNum.setText(Integer.toString(histogramSlider.getValue())));
+        list1.setModel(listModel);
     }
     
     public void aktualizujPrzyciski(int wybranySygnal) {
@@ -259,5 +263,9 @@ public class View {
 
     public JButton getDzielenieButton() {
         return dzielenieButton;
+    }
+
+    public void addToList(String text) {
+        listModel.addElement(text);
     }
 }

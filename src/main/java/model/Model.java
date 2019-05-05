@@ -2,6 +2,9 @@ package model;
 
 import cps.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Model {
 
     public static final String[] SYGNALY = { "Rozklad jednostajny",
@@ -22,6 +25,8 @@ public class Model {
     private int czestotliwosc = 0;      // czestotliwosc, domyslne 1 Hz
     private double prawdopodobienstwo = 0;   // prawdopodobienstwo wystapienia skoku
     private int histogram = 0;          // przesuniecie wartosci czasu pobrania probki
+
+    private List<Sygnal> sygnaly = new ArrayList<>();
 
     public Sygnal generujSygnal() {
         switch (wybranySygnal) {
@@ -158,5 +163,13 @@ public class Model {
 
     public void setHistogram(int histogram) {
         this.histogram = histogram;
+    }
+
+    public void addSygnal(Sygnal sygnal) {
+        sygnaly.add(sygnal);
+    }
+
+    public List<Sygnal> getSygnaly() {
+        return sygnaly;
     }
 }

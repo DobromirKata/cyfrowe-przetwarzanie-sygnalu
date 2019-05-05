@@ -1,5 +1,6 @@
 package controller;
 
+import cps.Sygnal;
 import model.Model;
 import view.View;
 
@@ -30,6 +31,16 @@ public class Controller {
         view.getPoleCzestotliwosc().addChangeListener(e -> model.setCzestotliwosc((int) view.getPoleCzestotliwosc().getValue()));
         view.getPolePrawdopodobienstwo().addChangeListener(e -> model.setPrawdopodobienstwo((int) view.getPolePrawdopodobienstwo().getValue()));
         view.getHistogramSlider().addChangeListener(e -> model.setHistogram(view.getHistogramSlider().getValue()));
+
+//        Przyciski
+        view.getGenerujButton().addActionListener(e -> generujSygnal());
+    }
+
+    private void generujSygnal() {
+        Sygnal sygnal = model.generujSygnal();
+        model.addSygnal(sygnal);
+        view.addToList(sygnal.StringToJlist());
+        System.out.println(model.getSygnaly().toString());
     }
 
     private void wyborSygnalu(){
