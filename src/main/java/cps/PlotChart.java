@@ -1,9 +1,8 @@
 package cps;
 
-import java.awt.GridLayout;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -97,23 +96,38 @@ public abstract class PlotChart {
 
         JFreeChart histogram = plotHistogram(signal, histogramCompartments);
 
-        JTextArea paramArea = new JTextArea(4, 2);
-        paramArea.setText("Wartosc srednia sygnalu: \t\t\t" + signal.oblSredniaWartoscSygnalu()
-                + "\nWartosc srednia(bezwzgledna) sygnalu: \t\t\t" + signal.oblWartoscSredniaBezwzglednaSygnalu()
-                + "\nMoc srednia sygnalu: \t\t\t" + signal.oblMocSygnalu() + "\nWariancja sygnalu: \t\t\t"
-                + signal.oblWariancjaSygnalu() + "\nWartosc skuteczna sygnalu: \t\t\t"
-                + signal.oblWartoscSkutecznaSygnalu());
+
+        Object[][] dane = {
+                { "Wartosc srednia sygnalu", signal.oblSredniaWartoscSygnalu() },
+                { "Wartosc srednia (bezwzgledna) sygnalu", signal.oblWartoscSredniaBezwzglednaSygnalu() },
+                { "Moc srednia sygnalu", signal.oblMocSygnalu() },
+                { "Wariancja sygnalu", signal.oblWariancjaSygnalu() },
+                { "Wartosc skuteczna sygnalu", signal.oblWartoscSkutecznaSygnalu() },
+        };
+
+        String[] kolumny = {
+                "Nazwa", "Wartość"
+        };
+
+        JTable table = new JTable(dane, kolumny);
+        table.setEnabled(false);
 
         JFrame jframe = new JFrame(signal.getClass().getSimpleName());
         jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        jframe.getContentPane().setLayout(new GridLayout(3, 1));
-        jframe.setSize(800, 720);
+        jframe.setSize(1200, 600);
         ChartPanel chartPanel01 = new ChartPanel(chart);
         ChartPanel chartPanel02 = new ChartPanel(histogram);
 
-        jframe.getContentPane().add(chartPanel01);
-        jframe.getContentPane().add(chartPanel02);
-        jframe.add(paramArea);
+        chartPanel01.setMinimumDrawHeight(250);
+
+        JPanel panel = new JPanel(new GridLayout(1, 2));
+        panel.setMinimumSize(new Dimension(-1, 400));
+        panel.add(chartPanel01);
+        panel.add(chartPanel02);
+
+        jframe.getContentPane().setLayout(new BoxLayout(jframe.getContentPane(), BoxLayout.Y_AXIS));
+        jframe.getContentPane().add(panel);
+        jframe.getContentPane().add(table);
         jframe.setVisible(true);
 
     }

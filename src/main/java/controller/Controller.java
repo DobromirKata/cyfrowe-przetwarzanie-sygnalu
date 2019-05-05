@@ -3,7 +3,6 @@ package controller;
 import cps.PlotChart;
 import cps.Sygnal;
 import model.Model;
-import view.Results;
 import view.View;
 
 import javax.swing.*;
@@ -44,16 +43,6 @@ public class Controller {
         view.addToList(sygnal.StringToJlist());
         PlotChart.plotChartAndHistogram(sygnal, model.getHistogram());
 //        wyswietlWyniki(sygnal);
-    }
-
-    private void wyswietlWyniki(Sygnal sygnal) {
-        JFrame wyniki = new JFrame(sygnal.getSignalName());
-        Results wynikiPanel = new Results();
-
-        wyniki.setContentPane(wynikiPanel);
-//        wyniki.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        wyniki.setSize(600, 400);
-        wyniki.setVisible(true);
     }
 
     private void wyborSygnalu(){
