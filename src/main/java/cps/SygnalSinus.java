@@ -1,6 +1,4 @@
-package cyfrowePrzetwarzanieSygnalu;
-
-import static java.lang.Math.sin;
+package cps;
 
 public class SygnalSinus extends Sygnal {
 

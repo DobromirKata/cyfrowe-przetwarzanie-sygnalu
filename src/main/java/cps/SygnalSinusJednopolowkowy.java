@@ -1,4 +1,4 @@
-package cyfrowePrzetwarzanieSygnalu;
+package cps;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.sin;

@@ -1,4 +1,4 @@
-package cyfrowePrzetwarzanieSygnalu;
+package cps;
 
 
 import java.io.DataInputStream;             // wczytywanie plików binarnych

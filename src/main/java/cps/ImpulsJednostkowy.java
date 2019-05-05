@@ -1,4 +1,4 @@
-package cyfrowePrzetwarzanieSygnalu;
+package cps;
 
 public class ImpulsJednostkowy extends Sygnal {
 
