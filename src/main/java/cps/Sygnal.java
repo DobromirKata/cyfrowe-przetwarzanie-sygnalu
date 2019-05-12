@@ -32,8 +32,7 @@ public class Sygnal {
         pointsList = new double[2][listlength];
     }
 
-    // tworzy tabele na podstawie czasu poczatkowego, czasu trwania sygnalu i
-    // probkowania
+    // tworzy tabele na podstawie czasu poczatkowego, czasu trwania sygnalu i probkowania
     public Sygnal(double a, double b, double t, int f) {
         Amplitude = a;
         tBegin = b;
@@ -167,3 +166,5 @@ public class Sygnal {
 
 
 }
+
+

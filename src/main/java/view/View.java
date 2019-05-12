@@ -32,8 +32,7 @@ public class View {
     private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public View() {
-        // TODO: Tytuł okna programu
-        frame = new JFrame("....");
+        frame = new JFrame("Cyfrowe przetwarzanie sygnałów - generacja sygnałów i szumu");
 
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,7 +99,7 @@ public class View {
             poleAmplituda.setValue(1.0);
             poleCzasPocz.setValue(0.0);
             poleCzasSyg.setValue(200.0);
-            poleOkres.setValue(200.0);
+            poleOkres.setValue(100.0);
             poleWspWyp.setValue(0.5);
             poleCzestotliwosc.setValue(1);
         } else if (wybranySygnal == 9) {
@@ -160,13 +159,13 @@ public class View {
         poleAmplituda.setModel(new SpinnerNumberModel(1.0, 0.1, 999999.0, 0.1));
         poleCzasPocz.setModel(new SpinnerNumberModel(0.0, 0.0, 999999.0, 0.1));
         poleCzasSyg.setModel(new SpinnerNumberModel(0.1, 0.1, 999999.0, 0.1));
-        poleWspWyp.setModel(new SpinnerNumberModel(0.0, 0, 1, 0.1));
+        poleWspWyp.setModel(new SpinnerNumberModel(0.5, 0.0, 1, 0.1));
         poleOkres.setModel(new SpinnerNumberModel(0.0, -999999.0, 999999.0, 0.1));
         poleCzasSkoku.setModel(new SpinnerNumberModel(0.0, -999999.0, 999999.0, 0.1));
         poleProbkaSkoku.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         poleIloscPr.setModel(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
         poleCzestotliwosc.setModel(new SpinnerNumberModel(1, 1, 999999, 1));
-        polePrawdopodobienstwo.setModel(new SpinnerNumberModel(200, 2, Integer.MAX_VALUE, 1));
+        polePrawdopodobienstwo.setModel(new SpinnerNumberModel(0.01, 0.01, 999999.0, 1));
 
 
     }

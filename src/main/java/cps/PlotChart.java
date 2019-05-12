@@ -1,6 +1,8 @@
 package cps;
 
 import java.awt.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import javax.swing.*;
 
@@ -96,13 +98,13 @@ public abstract class PlotChart {
 
         JFreeChart histogram = plotHistogram(signal, histogramCompartments);
 
-
+        NumberFormat formatter = new DecimalFormat("#0.00");
         Object[][] dane = {
-                { "Wartosc srednia sygnalu", signal.oblSredniaWartoscSygnalu() },
-                { "Wartosc srednia (bezwzgledna) sygnalu", signal.oblWartoscSredniaBezwzglednaSygnalu() },
-                { "Moc srednia sygnalu", signal.oblMocSygnalu() },
-                { "Wariancja sygnalu", signal.oblWariancjaSygnalu() },
-                { "Wartosc skuteczna sygnalu", signal.oblWartoscSkutecznaSygnalu() },
+                { "Wartosc srednia sygnalu", formatter.format(signal.oblSredniaWartoscSygnalu()) },
+                { "Wartosc srednia (bezwzgledna) sygnalu", formatter.format(signal.oblWartoscSredniaBezwzglednaSygnalu()) },
+                { "Moc srednia sygnalu", formatter.format(signal.oblMocSygnalu()) },
+                { "Wariancja sygnalu", formatter.format(signal.oblWariancjaSygnalu()) },
+                { "Wartosc skuteczna sygnalu", formatter.format(signal.oblWartoscSkutecznaSygnalu()) },
         };
 
         String[] kolumny = {

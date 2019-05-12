@@ -96,15 +96,18 @@ public class Model {
             amplituda = 1.0;
             czasPocz = 0.0;
             czasSyg = 200.0;
+            okres = 200.0;
             czasSkoku = 100.0;
             czestotliwosc = 1;
         } else if (wybranySygnal == 10) {
             probkaSkoku = 100;
             iloscProbek = 200;
+            okres = 200.0;
         } else if (wybranySygnal == 11) {
             probkaSkoku = 100;
             iloscProbek = 200;
             prawdopodobienstwo = 0.05;
+            okres = 200.0;
         }
         histogram = 15;
     }
